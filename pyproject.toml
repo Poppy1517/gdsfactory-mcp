@@ -1,0 +1,30 @@
+[project]
+name = "gdsfactory-mcp"
+version = "0.1.0"
+description = "A beginner-friendly MCP server for photonic layout design with gdsfactory."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gdsfactory>=9.51.0",
+    "mcp[cli]>=2,<3",
+    "pydantic>=2.13.5",
+]
+
+[project.scripts]
+gdsfactory-mcp = "gdsfactory_mcp:main"
+gdsfactory-mcp-server = "gdsfactory_mcp.server:main"
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
