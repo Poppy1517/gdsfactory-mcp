@@ -24,12 +24,7 @@ uv run python -m pytest
   "mcpServers": {
     "gdsfactory": {
       "command": "uv",
-      "args": [
-        "--directory",
-        "/absolute/path/to/gdsfactory-mcp",
-        "run",
-        "gdsfactory-mcp-server"
-      ]
+      "args": ["--directory", "/absolute/path/to/gdsfactory-mcp", "run", "gdsfactory-mcp-server"]
     }
   }
 }
@@ -54,7 +49,4 @@ uv run python scripts/build_1x4_mmi_network.py
 ## 更多信息
 
 - [使用指南](docs/USER_GUIDE.md)：工具、参数、单位和错误排查
-- [Demo 说明](demo/README.md)：更多完整 MCP 工作流
 - [验收记录](docs/V0_1_ACCEPTANCE.md)：当前版本的验证范围
-
-当前版本开放 28 种经过验证的器件和 23 个 MCP 工具。设计可保存为 JSON 并继续编辑；导出前会检查端口、连接、部分几何重叠和已生成路由的同层交叉。
