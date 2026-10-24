@@ -1,0 +1,229 @@
+{
+  "name": "mmi_1x4_1550_te",
+  "components": [
+    {
+      "kind": "component",
+      "name": "tree",
+      "type_name": "splitter_tree",
+      "parameters": {
+        "noutputs": 4,
+        "spacing_x": 400.0,
+        "spacing_y": 254.0
+      },
+      "placement": {
+        "x_um": 200.0,
+        "y_um": 0.0,
+        "rotation_deg": 0.0,
+        "mirror_x": false,
+        "is_explicit": true
+      }
+    },
+    {
+      "kind": "component",
+      "name": "gc_in",
+      "type_name": "grating_coupler_elliptical",
+      "parameters": {
+        "polarization": "te",
+        "taper_length": 16.6,
+        "taper_angle": 40.0,
+        "wavelength": 1.55,
+        "fiber_angle": 15.0,
+        "grating_line_width": 0.343,
+        "neff": 2.638,
+        "nclad": 1.443,
+        "n_periods": 30,
+        "big_last_tooth": false,
+        "slab_xmin": -1.0,
+        "slab_offset": 2.0,
+        "spiked": true
+      },
+      "placement": {
+        "x_um": 0.0,
+        "y_um": 0.0,
+        "rotation_deg": 180.0,
+        "mirror_x": false,
+        "is_explicit": true
+      }
+    },
+    {
+      "kind": "component",
+      "name": "gc_out_0",
+      "type_name": "grating_coupler_elliptical",
+      "parameters": {
+        "polarization": "te",
+        "taper_length": 16.6,
+        "taper_angle": 40.0,
+        "wavelength": 1.55,
+        "fiber_angle": 15.0,
+        "grating_line_width": 0.343,
+        "neff": 2.638,
+        "nclad": 1.443,
+        "n_periods": 30,
+        "big_last_tooth": false,
+        "slab_xmin": -1.0,
+        "slab_offset": 2.0,
+        "spiked": true
+      },
+      "placement": {
+        "x_um": 1215.5,
+        "y_um": -63.5,
+        "rotation_deg": 0.0,
+        "mirror_x": false,
+        "is_explicit": true
+      }
+    },
+    {
+      "kind": "component",
+      "name": "gc_out_1",
+      "type_name": "grating_coupler_elliptical",
+      "parameters": {
+        "polarization": "te",
+        "taper_length": 16.6,
+        "taper_angle": 40.0,
+        "wavelength": 1.55,
+        "fiber_angle": 15.0,
+        "grating_line_width": 0.343,
+        "neff": 2.638,
+        "nclad": 1.443,
+        "n_periods": 30,
+        "big_last_tooth": false,
+        "slab_xmin": -1.0,
+        "slab_offset": 2.0,
+        "spiked": true
+      },
+      "placement": {
+        "x_um": 1215.5,
+        "y_um": -190.5,
+        "rotation_deg": 0.0,
+        "mirror_x": false,
+        "is_explicit": true
+      }
+    },
+    {
+      "kind": "component",
+      "name": "gc_out_2",
+      "type_name": "grating_coupler_elliptical",
+      "parameters": {
+        "polarization": "te",
+        "taper_length": 16.6,
+        "taper_angle": 40.0,
+        "wavelength": 1.55,
+        "fiber_angle": 15.0,
+        "grating_line_width": 0.343,
+        "neff": 2.638,
+        "nclad": 1.443,
+        "n_periods": 30,
+        "big_last_tooth": false,
+        "slab_xmin": -1.0,
+        "slab_offset": 2.0,
+        "spiked": true
+      },
+      "placement": {
+        "x_um": 1215.5,
+        "y_um": 190.5,
+        "rotation_deg": 0.0,
+        "mirror_x": false,
+        "is_explicit": true
+      }
+    },
+    {
+      "kind": "component",
+      "name": "gc_out_3",
+      "type_name": "grating_coupler_elliptical",
+      "parameters": {
+        "polarization": "te",
+        "taper_length": 16.6,
+        "taper_angle": 40.0,
+        "wavelength": 1.55,
+        "fiber_angle": 15.0,
+        "grating_line_width": 0.343,
+        "neff": 2.638,
+        "nclad": 1.443,
+        "n_periods": 30,
+        "big_last_tooth": false,
+        "slab_xmin": -1.0,
+        "slab_offset": 2.0,
+        "spiked": true
+      },
+      "placement": {
+        "x_um": 1215.5,
+        "y_um": 63.5,
+        "rotation_deg": 0.0,
+        "mirror_x": false,
+        "is_explicit": true
+      }
+    }
+  ],
+  "connections": [
+    {
+      "source_component": "gc_in",
+      "source_port": "o1",
+      "target_component": "tree",
+      "target_port": "o1_0_0",
+      "connection_type": "route",
+      "cross_section": {
+        "kind": "registered_reference",
+        "reference_type": "cross_section",
+        "name": "strip"
+      },
+      "radius_um": 100.0,
+      "waypoints_um": null
+    },
+    {
+      "source_component": "tree",
+      "source_port": "o2_1_1",
+      "target_component": "gc_out_0",
+      "target_port": "o1",
+      "connection_type": "route",
+      "cross_section": {
+        "kind": "registered_reference",
+        "reference_type": "cross_section",
+        "name": "strip"
+      },
+      "radius_um": 100.0,
+      "waypoints_um": null
+    },
+    {
+      "source_component": "tree",
+      "source_port": "o2_1_2",
+      "target_component": "gc_out_1",
+      "target_port": "o1",
+      "connection_type": "route",
+      "cross_section": {
+        "kind": "registered_reference",
+        "reference_type": "cross_section",
+        "name": "strip"
+      },
+      "radius_um": 100.0,
+      "waypoints_um": null
+    },
+    {
+      "source_component": "tree",
+      "source_port": "o2_1_3",
+      "target_component": "gc_out_2",
+      "target_port": "o1",
+      "connection_type": "route",
+      "cross_section": {
+        "kind": "registered_reference",
+        "reference_type": "cross_section",
+        "name": "strip"
+      },
+      "radius_um": 100.0,
+      "waypoints_um": null
+    },
+    {
+      "source_component": "tree",
+      "source_port": "o2_1_4",
+      "target_component": "gc_out_3",
+      "target_port": "o1",
+      "connection_type": "route",
+      "cross_section": {
+        "kind": "registered_reference",
+        "reference_type": "cross_section",
+        "name": "strip"
+      },
+      "radius_um": 100.0,
+      "waypoints_um": null
+    }
+  ]
+}
