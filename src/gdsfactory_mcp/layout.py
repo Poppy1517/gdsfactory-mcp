@@ -4,7 +4,7 @@ from pathlib import Path
 
 import gdsfactory as gf
 
-from gdsfactory_mcp.backend import export_design
+from gdsfactory_mcp.backend import export_design, get_design_analysis_data
 from gdsfactory_mcp.checks import run_design_checks
 from gdsfactory_mcp.design import DesignService
 
@@ -89,6 +89,78 @@ def build_mmi_splitter(output_dir: Path) -> tuple[gf.Component, Path, Path]:
         "splitter", "o3", "output_bottom", "o1",
         cross_section="strip", radius_um=10,
     )
+    return _export_checked_example(design, output_dir)
+
+
+def build_1x4_mmi_network(
+    output_dir: Path,
+    *,
+    stage_dx_um: float = 400.0,
+    stage2_dy_um: float = 254.0,
+    bend_radius_um: float = 100.0,
+    gc_gap_um: float = 200.0,
+    tree_x_um: float = 200.0,
+) -> tuple[gf.Component, Path, Path]:
+    """Build the README 1550 nm TE 1×4 MMI splitter demo.
+
+    Uses a binary ``splitter_tree`` of three ``mmi1x2`` cells (strip cross-section,
+    default 500 nm width), plus one input and four output elliptical grating
+    couplers. Stage spacing matches the demo prompt: ``stage_dx_um`` between MMI
+    levels and ``stage2_dy_um`` between the second-stage arms; output GC pitch is
+    ``stage2_dy_um / 2`` (127 µm when using the defaults).
+    """
+    design = DesignService("mmi_1x4_1550_te")
+    gc_parameters = {"polarization": "te", "wavelength": 1.55}
+    design.add_component(
+        "tree",
+        "splitter_tree",
+        {
+            "noutputs": 4,
+            "spacing_x": stage_dx_um,
+            "spacing_y": stage2_dy_um,
+        },
+    )
+    design.add_component("gc_in", "grating_coupler_elliptical", gc_parameters)
+    for index in range(4):
+        design.add_component(
+            f"gc_out_{index}",
+            "grating_coupler_elliptical",
+            gc_parameters,
+        )
+
+    design.place_component("gc_in", x_um=0.0, y_um=0.0, rotation_deg=180)
+    design.place_component("tree", x_um=tree_x_um, y_um=0.0)
+
+    tree_ports = {
+        port["name"]: port
+        for port in get_design_analysis_data(design.spec)["ports_by_component"]["tree"]
+    }
+    output_ports = [f"o2_1_{index}" for index in range(1, 5)]
+    for index, port_name in enumerate(output_ports):
+        port_x, port_y = tree_ports[port_name]["center_um"]
+        design.place_component(
+            f"gc_out_{index}",
+            x_um=port_x + gc_gap_um,
+            y_um=port_y,
+        )
+
+    design.route(
+        "gc_in",
+        "o1",
+        "tree",
+        "o1_0_0",
+        cross_section="strip",
+        radius_um=bend_radius_um,
+    )
+    for index, port_name in enumerate(output_ports):
+        design.route(
+            "tree",
+            port_name,
+            f"gc_out_{index}",
+            "o1",
+            cross_section="strip",
+            radius_um=bend_radius_um,
+        )
     return _export_checked_example(design, output_dir)
 
 
