@@ -7,5 +7,6 @@
 - 版图：`mmi_1x4_1550_te.gds` / `mmi_1x4_1550_te.json`
 - 预览：`preview.png`（gdsfactory 标注导出）
 - KLayout：`klayout_screenshot.png`（KLayout 0.28 打开本目录 GDS 后截取）
+- 录屏：[`walkthrough.mp4`](walkthrough.mp4)（终端运行生成脚本 → KLayout Full Hierarchy 查看 1×4）
 
 README 主页 Demo 图仍使用 [`docs/images/mmi_1x4_1550_te.png`](../images/mmi_1x4_1550_te.png)。

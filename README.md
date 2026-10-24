@@ -64,6 +64,9 @@ uv run python -m pytest
 uv run python scripts/build_1x4_mmi_network.py
 ```
 
+工具链短录屏（终端生成 GDS → KLayout 打开并查看 1×4 版图，无 MCP 对话）：
+[docs/demo/mmi-1x4-1550-te/walkthrough.mp4](docs/demo/mmi-1x4-1550-te/walkthrough.mp4)。
+
 ## 更多信息
 
 - [使用指南](docs/USER_GUIDE.md)：工具、参数、单位和错误排查
